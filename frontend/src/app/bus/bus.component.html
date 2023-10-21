@@ -1,0 +1,437 @@
+<div class="col-md-6 offset-md-3">
+  <div class="container">
+    <div class="scroll-left">
+      <p>প্রথমবার টিকেট কাটছেন ? ব্যবহার করুন কুপন কোড আর উপভোগ করুন নিশ্চিত অফার !</p>
+    </div>
+  </div>
+  <form (ngSubmit) = "onSubmit()">
+    <div class="form-group" style="margin-top: 10px">
+      <label>From</label>
+      <input type="text" class ="form-control" id = "from" placeholder="Enter City" style="margin-top: 7px"
+             [(ngModel)] = "bus.journeyFrom" name = "from">
+    </div><!--*ngFor="let from of journeyFrom |filter:bus.journeyFrom"-->
+
+    <div class="form-group" style="margin-top: 10px">
+      <label>To</label>
+      <input type="text" class ="form-control" id = "to" placeholder="Enter City" style="margin-top: 7px"
+             [(ngModel)] = "bus.journeyTo" name = "to">
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+      <div class="col-md-6">
+        <label>Date of Journey</label>
+        <input type="date" class ="form-control" id = "doj" placeholder="Pick a date" style="margin-top: 10px"
+               [(ngModel)] = "bus.doj" name = "doj">
+        <i class="fas fa-calendar input-prefix"></i>
+      </div>
+      <div class="col-md-6">
+        <label> Date of Return</label>
+        <input type="date" class ="form-control" id = "dor" placeholder="Pick a date" style="margin-top: 10px"
+               [(ngModel)] = "bus.dor" name = "dor">
+        <i class="fas fa-calendar input-prefix"></i>
+      </div>
+    </div>
+    <br>
+    <button class = "btn btn-success" type ="submit" (click) = "searchBus()" style="width:560px">Search</button>
+  </form>
+</div>
+
+<div class="col-md-12">
+  <table class="table" [hidden]="!searchResult">
+    <thead>
+    <tr>
+      <th scope="col">Operator</th>
+      <th scope="col">Dept.Time</th>
+      <th scope="col">Arr.Time</th>
+      <th scope="col">Bus Type</th>
+      <th scope="col">Seats Available</th>
+      <th scope="col">Fare</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let result of searchResult">
+          <th scope="row">{{result.operator}}</th>
+          <td>{{result.departureTime}}</td>
+          <td>{{result.arriveTime}}</td>
+          <td>{{result.busTypes}}</td>
+          <td>{{result.seatAvailable}}</td>
+          <td>{{result.fare}}</td>
+
+          <td><button type="button" (blur)="seletedBus(result)" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            View Seats</button></td>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+
+                  <div class="container-fluid pt-5 mb-5">
+                    <div class="row justify-content-center">
+                      <div class="col-md-9 ">
+                        <div class="seat_plan_wrap">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <h6>Select Seats </h6>
+                              <div class="seats">
+                                <div class="handle">
+                                  <img src="../assets/img/handle.png" alt="">
+                                </div>
+                                <div class="row1">
+                                  <ul>
+                                    <li>
+                                      <a (click)="Seat('A1')" id="A1" title="[A1]">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a (click)="Seat('B1')" id="B1" title="[B1]">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[C1]" (click)="Seat('C1')" id="C1">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[D1]" (click)="Seat('D1')" id="D1">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[E1]" (click)="Seat('E1')" id="E1">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[F1]" (click)="Seat('F1')" id="F1">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[G1]" (click)="Seat('G1')" id="G1">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[H1]" (click)="Seat('H1')" id="H1">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[I1]" (click)="Seat('I1')" id="I1">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                  </ul>
+
+
+                                  <ul>
+                                    <li>
+                                      <a title="[A2]" (click)="Seat('A2')" id="A2">
+                                        <img src="../assets/img/bseat.png" alt="" >
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[B2]" (click)="Seat('B2')" id="B2">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[C2]" (click)="Seat('C2')" id="C2">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[D2]" (click)="Seat('D2')" id="D2">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[E2]" (click)="Seat('E2')" id="E2">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[F2]" (click)="Seat('F2')" id="F2">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[G2]" (click)="Seat('G2')" id="G2">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[H2]" (click)="Seat('H2')" id="H2">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[I2]" (click)="Seat('I2')" id="I2">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                  </ul>
+
+                                </div>
+                                <div class="row1">
+
+                                  <ul>
+                                    <!-- ROW 3 START -->
+                                    <li>
+                                      <a title="[A3]" (click)="Seat('A3')" id="A3">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[B3]" (click)="Seat('B3')" id="B3">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[C3]" (click)="Seat('C3')" id="C3">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[D3]" (click)="Seat('D3')" id="D3">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[E3]" (click)="Seat('E3')" id="E3">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[F3]" (click)="Seat('F3')" id="F3">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[G3]" (click)="Seat('G3')" id="G3">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[H3]" (click)="Seat('H3')" id="H3">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[I3]" (click)="Seat('I3')" id="I3">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                  </ul>
+
+                                  <!-- ROW 3 COMPLETE  -->
+
+                                  <ul>
+                                    <!-- ROW 4 START  -->
+                                    <li>
+                                      <a title="[A4]" (click)="Seat('A4')" id="A4">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[B4]" (click)="Seat('B4')" id="B4">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[C4]" (click)="Seat('C4')" id="C4">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[D4]" (click)="Seat('D4')" id="D4">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[E4]" (click)="Seat('E4')" id="E4">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[F4]" (click)="Seat('F4')" id="F4">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[G4]" (click)="Seat('G4')" id="G4">
+                                        <img src="../assets/img/bseat.png" alt="">
+
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[H4]" (click)="Seat('H4')" id="H4">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a title="[I4]" (click)="Seat('I4')" id="I4">
+                                        <img src="../assets/img/bseat.png" alt="">
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <div *ngIf="alert"class="alert alert-danger ">You can buy only 4 seats in one time </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="seat_plan">
+                                <table class="table ">
+                                  <thead>
+                                  <tr>
+                                    <th>Seats</th>
+                                    <th>Fare</th>
+                                    <th>Class</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <tr *ngFor="let s of showSeatList">
+                                    <td>{{s.seatNo}}</td>
+                                    <td>{{s.fare}}</td>
+                                    <td>{{s.seatClass}}</td>
+                                  </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <div class="total  bg-default">
+                                <b>Total: {{total}}</b>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" (click)="confirmSeat()"class="btn mt-3 ml-3 btn-primary btn-sm btn-block" data-bs-dismiss="modal">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<!------------------------------------------------Available Bus Operator-------------------------------------------------->
+<div class="row mobile_row">
+  <h4 style="color:#079d49;font-weight: bold;">Available Bus Operators</h4>
+
+  <hr style="border-color:#666;">
+  <ul class="row">
+    <li class="col-md-3 col-xs-5 colmd3"> Abdullah Paribahan</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Agomony Express</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Akota Transport</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Al-Mobaraka Paribahan</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Alhamra Paribahan</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Barkat Travels</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Chaklader Paribahan</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Comfort Line Pvt Ltd</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Dhaka Line</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Diganta Express</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Diganta Paribahan</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Dipjol Enterprise</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Elish Paribahan</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Emad Paribahan(Pvt.)Ltd.</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Ena Transport (Pvt) Ltd</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Green Line Paribahan</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Hanif Enterprise</li>
+    <li class="col-md-3 col-xs-5 colmd3"> HIMACHOL</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Islam Paribahan</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Kanak Paribahan Ltd</li>
+    <li class="col-md-3 col-xs-5 colmd3"> M M Paribahan</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Manik Express</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Nabil Paribahan</li>
+    <li class="col-md-3 col-xs-5 colmd3"> New S.B Super Deluxe</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Ranga Provat Paribahan Ltd</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Relax Transport Ltd.</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Royal Coach</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Rozina Enterprise</li>
+    <li class="col-md-3 col-xs-5 colmd3"> S.B Super Deluxe</li>
+    <li class="col-md-3 col-xs-5 colmd3"> S.R Travels (Pvt) Ltd</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Sagorika Enterprise</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Saintmartin Hyundai (Robi Express)</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Saintmartin Paribahan Ltd</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Saintmartin Travels</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Shahzadpur Travels</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Sheba Green Line</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Sheba Transport</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Shohagh Paribahan</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Shoukhin Paribahan</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Shuvo Bosundhara Paribahan</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Shyamoli Plus Pvt Ltd</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Shyamoli SP</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Soudia Air Con</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Soudia Coach Service</li>
+    <li class="col-md-3 col-xs-5 colmd3"> SP Golden Line</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Star Line Special Ltd.</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Tisha Group</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Tuba Line</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Tungipara Express</li>
+    <li class="col-md-3 col-xs-5 colmd3"> Year-71</li>
+  </ul>
+</div>
+
+
+
+<!------------------------------------------------Available Bus Route-------------------------------------------------->
+<section id="routes_sec" class="container-wrapper">
+  <div class="row mobile_row">
+    <h4 style="color:#079d49;font-weight: bold;">Available Bus Routes</h4>
+    <hr style="border-color:#666;">
+    <ul class="row">
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus/dhaka-to-dinajpur" target="_blank" style="color:#333333;" title="Dhaka to Dinajpur"> Dhaka to Dinajpur</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-panchagor" target="_blank" style="color:#333333;" title="Dhaka to Panchagor"> Dhaka to Panchagor</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-nilphamari" target="_blank" style="color:#333333;" title="Dhaka to Nilphamari"> Dhaka to Nilphamari</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-kurigram" target="_blank" style="color:#333333;" title="Dhaka to Kurigram"> Dhaka to Kurigram</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-rangpur" target="_blank" style="color:#333333;" title="Dhaka to Rangpur"> Dhaka to Rangpur</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-thakurgaon" target="_blank" style="color:#333333;" title="Dhaka to Thakurgaon"> Dhaka to Thakurgaon</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-coxs-bazar" target="_blank" style="color:#333333;" title="Dhaka to Cox's Bazar"> Dhaka to Cox's Bazar</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-feni" target="_blank" style="color:#333333;" title="Dhaka to Feni"> Dhaka to Feni</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-darshana" target="_blank" style="color:#333333;" title="Dhaka to Darshana"> Dhaka to Darshana</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-joypurhat" target="_blank" style="color:#333333;" title="Dhaka to Joypurhat"> Dhaka to Joypurhat</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-satkhira" target="_blank" style="color:#333333;" title="Dhaka to Satkhira"> Dhaka to Satkhira</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-bogra" target="_blank" style="color:#333333;" title="Dhaka to Bogra"> Dhaka to Bogra</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-naogaon" target="_blank" style="color:#333333;" title="Dhaka to Naogaon"> Dhaka to Naogaon</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-chapai-nawabganj" target="_blank" style="color:#333333;" title="Dhaka to Chapai Nawabganj"> Dhaka to Chapai Nawabganj</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-gopalganj" target="_blank" style="color:#333333;" title="Dhaka to Gopalganj"> Dhaka to Gopalganj</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-hili" target="_blank" style="color:#333333;" title="Dhaka to Hili"> Dhaka to Hili</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-chittagong" target="_blank" style="color:#333333;" title="Dhaka to Chittagong"> Dhaka to Chittagong</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-khulna" target="_blank" style="color:#333333;" title="Dhaka to Khulna"> Dhaka to Khulna</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-sylhet" target="_blank" style="color:#333333;" title="Dhaka to Sylhet"> Dhaka to Sylhet</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-barisal" target="_blank" style="color:#333333;" title="Dhaka to Barisal"> Dhaka to Barisal</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-bandarban" target="_blank" style="color:#333333;" title="Dhaka to Bandarban"> Dhaka to Bandarban</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-teknaf" target="_blank" style="color:#333333;" title="Dhaka to Teknaf"> Dhaka to Teknaf</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-khagrachari" target="_blank" style="color:#333333;" title="Dhaka to Khagrachari"> Dhaka to Khagrachari</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-moulvibazar" target="_blank" style="color:#333333;" title="Dhaka to Moulvibazar"> Dhaka to Moulvibazar</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-sreemangal" target="_blank" style="color:#333333;" title="Dhaka to Sreemangal"> Dhaka to Sreemangal</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-rangamati" target="_blank" style="color:#333333;" title="Dhaka to Rangamati"> Dhaka to Rangamati</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-kolkata" target="_blank" style="color:#333333;" title="Dhaka to Kolkata"> Dhaka to Kolkata</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-rajshahi" target="_blank" style="color:#333333;" title="Dhaka to Rajshahi"> Dhaka to Rajshahi</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-nazirhat" target="_blank" style="color:#333333;" title="Dhaka to Nazirhat"> Dhaka to Nazirhat</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-jessore" target="_blank" style="color:#333333;" title="Dhaka to Jessore"> Dhaka to Jessore</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-kushtia" target="_blank" style="color:#333333;" title="Dhaka to Kushtia"> Dhaka to Kushtia</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-gaibandha" target="_blank" style="color:#333333;" title="Dhaka to Gaibandha"> Dhaka to Gaibandha</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-jhenaidah" target="_blank" style="color:#333333;" title="Dhaka to Jhenaidah"> Dhaka to Jhenaidah</a></li>
+      <li class="col-md-3 col-xs-5" style=""><i class="fa fa-map-marker" aria-hidden="true" style="color:#079d49;font-size:17px;"></i> <a href="/bus-tickets/dhaka-to-brahmanbaria" target="_blank" style="color:#333333;" title="Dhaka to Brahmanbaria"> Dhaka to Brahmanbaria</a></li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+</section>
+
+
+
+
+

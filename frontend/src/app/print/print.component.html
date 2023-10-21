@@ -1,0 +1,54 @@
+<div class="container" *ngIf="confirmTicket">
+  <div class="row justify-content-center">
+    <div class="col-md-10 ticket ">
+      <h6 class="text-center pt-3 pb-3 "> Online Reservation      </h6>
+      <table class="table">
+        <thead>
+        <td class="text-capitalize">{{confirmTicket.busId.journeyFrom}} <span> <i class="fas fa- arrow-right"></i></span> {{confirmTicket.busId.journeyTo}}</td>
+        <!--<td>{{myDate | date}}</td>-->
+        <td>{{confirmTicket.busId.doj | date}}</td>
+        <td>RedbuS.com</td>
+        </thead>
+      </table>
+      <table class="table ps_details">
+        <tr>
+          <th>Passenger Details</th>
+          <th>Ticket Id</th>
+          <th>Seat No</th>
+          <th>Total Fare</th>
+
+        </tr>
+        <tr>
+          <td><b>{{confirmTicket.userName}}</b> <br>
+            <span>{{confirmTicket.mobileNo}}</span> <br>
+            <span>{{confirmTicket.email}}</span>
+          </td>
+          <td>{{confirmTicket.id}}</td>
+          <td *ngIf="seatNo">
+            <span  *ngFor="let s of seatNo">{{s +" "}}</span>
+          </td>
+          <td>{{confirmTicket.seat}}</td>
+          <td>{{confirmTicket.busId.fare}} </td>
+        </tr>
+      </table>
+      <table class="table ps_details ">
+        <tr>
+          <th>Bus Name</th>
+          <th>Reporting Time </th>
+          <th>Departure Time</th>
+
+        </tr>
+        <tr>
+          <td>{{confirmTicket.busId.operator}} <br>
+            <span> <em>Coach Type: </em>{{confirmTicket.busId.busTypes}} </span>
+          </td>
+          <td>Before 30 mints</td>
+          <td>{{confirmTicket.busId.departureTime}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+      <p style="color:red">** Please Bring this copy to ticket counter for collect your ticket </p>
+    </div>
+  </div>
+</div>

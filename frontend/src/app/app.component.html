@@ -1,0 +1,57 @@
+<div class="bg-primary" style="height:60px;width: 1600px"></div>
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <ul class = "navbar-nav" style="margin-left: 350px">
+        <li class = "nav-item">
+            <a routerLink="home" routerLinkActive="active" class="nav-link" >HOME</a>
+        </li>
+      <li class = "nav-item">
+        <a routerLink="bus" routerLinkActive="active" class="nav-link" >BUS</a>
+      </li>
+      <li class = "nav-item">
+        <a routerLink="airTickets" routerLinkActive="active" class="nav-link" >TRAIN</a>
+      </li>
+      <li class = "nav-item">
+        <a routerLink="aboutUs" routerLinkActive="active" class="nav-link" >ABOUT US</a>
+      </li>
+      <li class = "nav-item">
+        <a routerLink="contactUs" routerLinkActive="active" class="nav-link" >CONTACT US</a>
+      </li>
+    </ul>
+</nav>
+
+<!--<div class="container row">
+  <div class="col-md-12">
+    <h1>Upload Image</h1>
+  </div>
+</div>
+<div class="container row">
+  <div class="col-md-6">
+    <input type="file" (change)="onFileChanged($event)">
+  </div>
+  <div class="col-md-6">
+    <input type="button" (change)="onUpload()" value="upload">
+  </div>
+  <div class="col-md-6">
+    <input type="text" class="form-control" id="name"
+           placeholder="image name" [(ngModel)]="imageName">
+  </div>
+  <div class="col-md-6">
+    <input type="button" (click)="getImage()" value="Get Image">
+  </div>
+</div>
+
+<div class="container row">
+  <div class="col-md-12">
+    <div *ngIf="retrievedImage">
+      <img [src]="retrievedImage" alt="" fill="">
+    </div>
+  </div>
+</div>-->
+<div class = "container">
+    <router-outlet></router-outlet>
+</div>
+<footer class = "footer">
+    <div class = "container">
+        <span></span>
+    </div>
+</footer>

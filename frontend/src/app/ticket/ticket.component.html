@@ -1,0 +1,42 @@
+<div class="container mt-4 ">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-8 block" style="
+  height: 340px;
+  margin-bottom: 28px;
+">
+          <form (ngSubmit) = "onSubmit()" #confirm>
+            <div class="form-group">
+              <label>User Name</label>
+              <input type="text" required name="user_name" [(ngModel)] = "confirmTicket.userName" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+              <label>User Mobile No</label>
+              <input type="text" required name="user_mobile" [(ngModel)] = "confirmTicket.mobileNo" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+              <label>Email </label>
+              <input type="email" required name="user_email" [(ngModel)] = "confirmTicket.email" class="form-control form-control-sm">
+            </div>
+            <button [disabled]="!confirm" class="btn btn-sm btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="col-md-4">
+          <div *ngIf="confirmTicket" class="card card-body block j_details">
+            <h6>Journy Details</h6>
+            <hr>
+            <h5 class="text-capitalize"style="color:coral"> {{confirmTicket.busId.journeyFrom}} to {{confirmTicket.busId.journeyTo}} </h5>
+            <p> Date & Time : {{confirmTicket.busId.doj}} :{{confirmTicket.busId.departureTime}}</p>
+            <p>{{confirmTicket.busId.operator}} <br>
+              <span>Coach Type : {{confirmTicket.busId.busTypes}}  </span>
+            </p>
+            <p >Seats No (
+            <li style="display:inline;color:coral" *ngFor="let s of seatNo">{{s +","}}</li>
+            )</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
